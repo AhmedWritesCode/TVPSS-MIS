@@ -1,246 +1,219 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage = "error.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Student Homepage</title>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .container {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
+    /* Body Styling */
+    body {
+        background-color: #f7f7f7; /* Light gray background */
+        color: #333; /* Default text color */
+        margin: 0;
+        padding: 0;
+    }
 
+    /* Sidebar Styling */
+    .sidebar {
+        background-color: #1f272b; /* Dark background */
+        color: white;
+        width: 250px;
+        height: 100vh;
+        position: fixed;
+        padding: 20px 10px;
+    }
+
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 22px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #f5a425; /* Accent color for sidebar title */
+    }
+
+    .menu-item {
+        margin: 10px 0;
+        padding: 10px 15px;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+        background-color: #f5a425; /* Accent color on hover/active */
+        color: black;
+    }
+
+    /* Main Content Styling */
+    .main-content {
+        padding: 20px;
+    }
+
+    /* Header Styling */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+        margin: 0;
+        color: #1f272b; /* Dark text for header */
+    }
+
+    .header .user-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .header .user-info img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .header .user-info p {
+        margin: 0;
+        font-size: 14px;
+        color: #333; /* Dark text for user info */
+    }
+
+    /* Info Card Styling */
+    .info-card {
+        background-color: #fff; /* White background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .info-card h3 {
+        margin: 0 0 10px 0;
+        font-size: 20px;
+        color: #1f272b; /* Dark text for card title */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .info-card p {
+        font-size: 16px;
+        color: #333; /* Dark text for card content */
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    /* Button Group Styling */
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #6a11cb; /* Purple button background */
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #f5a425; /* Accent color on hover */
+    }
+
+    /* Calendar Styling */
+    #calendar {
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: #fff; /* White background for calendar */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
         .sidebar {
-            background-color: #000000;
-            color: white;
-            width: 250px;
-            height: 100vh;
-            position: fixed;
-            padding: 20px 10px;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .menu-item {
-            margin: 10px 0;
-            padding: 10px 15px;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .menu-item:hover,
-        .menu-item.active {
-            background-color: #ffc107;
-            color: black;
+            width: 100%;
+            height: auto;
+            position: relative;
+            padding: 10px;
         }
 
         .main-content {
-            margin-left: 270px;
-            padding: 20px;
+            margin-left: 0;
+            padding: 10px;
         }
 
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .header .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .header .user-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
+            margin-top: 10px;
         }
 
         .info-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            padding: 15px;
         }
 
         .info-card h3 {
-            margin: 0 0 10px 0;
+            font-size: 18px;
         }
 
-        #calendar {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .sidebar {
-            background-color: #000000;
-            color: white;
-            width: 250px;
-            height: 100vh;
-            position: fixed;
-            padding: 20px 10px;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .menu-item {
-            margin: 10px 0;
-            padding: 10px 15px;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .menu-item:hover,
-        .menu-item.active {
-            background-color: #ffc107;
-            color: black;
-        }
-
-        .main-content {
-            margin-left: 270px;
-            padding: 20px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-
-        .header .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .header .user-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .info-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .info-card h3 {
-            margin: 0 0 10px 0;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
+        .info-card p {
+            font-size: 14px;
         }
 
         button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+            padding: 10px 15px;
+            font-size: 14px;
         }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .calendar,
-        .activities {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: calc(33.333% - 20px);
-        }
-
-        .card h4 {
-            margin: 0 0 10px;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <a href="#" class="menu-item active">Dashboard</a>
-        <a href="#" class="menu-item">Profile</a>
-        <a href="#" class="menu-item">Activity List</a>
-        <a href="#" class="menu-item">Crew Application</a>
-        <a href="#" class="menu-item">Video Studio</a>
-    </div>
+
+    <!-- Include Header -->
+    <jsp:include page="navbar.jsp" />
 
     <div class="main-content">
         <div class="header">
-            <h1>Welcome, Leon!</h1>
+            <h1>Welcome, Ahmed!</h1>
             <div class="user-info">
                 <img src="path/to/avatar.jpg" alt="User Avatar">
                 <div>
-                    <p>Daniel Hakim</p>
+                    <p>${user.username}</p>
                     <p>Student</p>
                 </div>
             </div>
@@ -249,18 +222,18 @@
         <div class="info-card">
             <h3>Information</h3>
             <p>SMK TAMAN UNIVERSITI</p>
-            <p>Jalan Pendidikan, Taman Universiti, 81300 Johor Bahru, Johor</p>
-            <p>Email: daniel@gmail.com</p>
-            <p>Contact: 012-3456789</p>
+            <p>Campus Residence, UTM, Johor Bahru, Johor</p>
+            <p>Email: wtvr@gmail.com</p>
+            <p>Contact: 012-******</p>
         </div>
 
         <div class="info-card button-group">
             <h3>Actions</h3>
             <form action="<%= request.getContextPath() %>/student/createVideo" method="get">
-                <button type="submit">Upload Video Link</button>
+                <button type="submit">Upload Resume</button>
             </form>
             <form action="${pageContext.request.contextPath}/student/submitCrewApplication" method="post">
-                <button type="submit">Submit TVPSS Crew Application</button>
+                <button type="submit">Submit Talent Application</button>
             </form>
         </div>
 
@@ -299,6 +272,10 @@
             calendar.render();
         });
     </script>
+    
+        <!-- Include Footer -->
+    <jsp:include page="footer.jsp" />
+    
 </body>
 </html>
 
