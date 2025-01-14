@@ -204,19 +204,12 @@
 </head>
 <body>
 
-    <!-- Include Header -->
-    <jsp:include page="navbar.jsp" />
-
+    <!-- Include Navbar -->
+    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
+    
     <div class="main-content">
         <div class="header">
             <h1>Welcome, Ahmed!</h1>
-            <div class="user-info">
-                <img src="path/to/avatar.jpg" alt="User Avatar">
-                <div>
-                    <p>${user.username}</p>
-                    <p>Student</p>
-                </div>
-            </div>
         </div>
 
         <div class="info-card">
@@ -228,53 +221,19 @@
         </div>
 
         <div class="info-card button-group">
-            <h3>Actions</h3>
-            <form action="<%= request.getContextPath() %>/student/createVideo" method="get">
-                <button type="submit">Upload Resume</button>
-            </form>
+            <h3>OPTIONS</h3>
+            
             <form action="${pageContext.request.contextPath}/student/submitCrewApplication" method="post">
                 <button type="submit">Submit Talent Application</button>
             </form>
+                        
+            <form action="<%= request.getContextPath() %>/student/uploadVideoLinksForm" method="get">
+                <button type="submit">Share your Linkedin</button>
+            </form>
         </div>
-
-        <div class="info-card">
-            <h3>Calendar</h3>
-            <div id="calendar"></div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: [
-                    {
-                        title: 'Sport Day',
-                        start: '2024-06-25'
-                    },
-                    {
-                        title: 'Math Olympiad',
-                        start: '2024-06-10',
-                        end: '2024-06-12'
-                    },
-                    {
-                        title: 'Science Fair',
-                        start: '2024-06-18T10:00:00'
-                    }
-                ]
-            });
-            calendar.render();
-        });
-    </script>
-    
-        <!-- Include Footer -->
-    <jsp:include page="footer.jsp" />
+            
+    <!-- Include Footer -->
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
     
 </body>
 </html>

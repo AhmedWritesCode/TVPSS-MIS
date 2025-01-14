@@ -1,138 +1,154 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage = "error.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard</title>
+    <title>Lecturer Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .sidebar {
-            background-color: #000000;
-            color: white;
-            width: 250px;
-            height: 100vh;
-            position: fixed;
-            padding: 20px 10px;
-        }
+    /* Body Styling */
+    body {
+        background-color: #f7f7f7; /* Light gray background */
+        color: #333; /* Dark text */
+        margin: 0;
+        padding: 0;
+    }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    /* Main Content Styling */
+    .main-content {
+        padding: 20px;
+    }
 
-        .menu-item {
-            margin: 10px 0;
-            padding: 10px 15px;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    /* Header Styling */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-        .menu-item:hover,
-        .menu-item.active {
-            background-color: #ffc107;
-            color: black;
-        }
+    .header h1 {
+        font-size: 28px;
+        color: #1f272b; /* Dark text for header */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
+    .header .user-info {
+        display: flex;
+        align-items: center;
+    }
+
+    .header .user-info img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .header .user-info p {
+        margin: 0;
+        font-size: 14px;
+        color: #333; /* Dark text for user info */
+    }
+
+    /* Info Card Styling */
+    .info-card {
+        background-color: #fff; /* White background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .info-card h3 {
+        font-size: 22px;
+        color: #1f272b; /* Dark text for card title */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    /* Button Group Styling */
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    button {
+        background-color: #6a11cb; /* Vibrant purple */
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #f5a425; /* Golden yellow on hover */
+        transform: translateY(-3px);
+    }
+
+    /* Calendar Styling */
+    #calendar {
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         .main-content {
-            margin-left: 270px;
-            padding: 20px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+            margin-left: 0;
+            padding: 10px;
         }
 
         .header h1 {
             font-size: 24px;
-            margin: 0;
-        }
-
-        .header .user-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .header .user-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .info-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
 
         .info-card h3 {
-            margin: 0 0 10px 0;
+            font-size: 20px;
         }
 
         .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 20px;
+            flex-direction: column;
         }
 
         button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
+            width: 100%;
         }
+    }
+</style>
 
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #calendar {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <a href="#" class="menu-item active">Dashboard</a>
-        <a href="#" class="menu-item">Manage Programs</a>
-        <a href="#" class="menu-item">Resource Requests</a>
-        <a href="#" class="menu-item">Upgrade Requests</a>
-    </div>
+
+    <!-- Include Navbar -->
+    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
 
     <div class="main-content">
         <div class="header">
-            <h1>Welcome, Teacher!</h1>
-            <div class="user-info">
-                <img src="path/to/avatar.jpg" alt="User Avatar">
-                <div>
-                    <p>John Doe</p>
-                    <p>Teacher</p>
-                </div>
-            </div>
+            <h1>Welcome, Ahmed!</h1>
         </div>
 
         <!-- Teacher Actions -->
@@ -168,44 +184,11 @@
 
             </div>
         </div>
-
-        <!-- Calendar -->
-        <div class="info-card">
-            <h3>Calendar</h3>
-            <div id="calendar"></div>
-        </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: [
-                    {
-                        title: 'Staff Meeting',
-                        start: '2024-06-10T10:00:00'
-                    },
-                    {
-                        title: 'Program Deadline',
-                        start: '2024-06-15'
-                    },
-                    {
-                        title: 'Training Workshop',
-                        start: '2024-06-20',
-                        end: '2024-12-22'
-                    }
-                ]
-            });
-            calendar.render();
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    
+        <!-- Include Footer -->
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 </body>
 </html>
 

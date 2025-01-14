@@ -1,161 +1,174 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage = "error.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
+    <title>Adminstrator Dashboard</title>
+<style>
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #1a1a1a;
-            color: white;
-            position: fixed;
-            padding: 20px;
-        }
+    /* Body Styling */
+    body {
+        background-color: #f7f7f7; /* Light gray background */
+        color: #333; /* Dark text */
+        margin: 0;
+        padding: 0;
+    }
 
-        .sidebar h2 {
-            font-size: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    /* Content Styling */
+    .content {
+        padding: 20px;
+    }
 
-        .menu-item {
-            margin: 15px 0;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    /* Header Styling */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: #1f272b; /* Dark background */
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .menu-item:hover, .menu-item.active {
-            background-color: #ffc107;
-            color: black;
-        }
+    .header h1 {
+        font-size: 28px;
+        color: #f5a425; /* Golden yellow accent */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+    }
 
+    .header span {
+        font-size: 16px;
+        color: #ccc; /* Light gray text */
+    }
+
+    /* Card Styling */
+    .card {
+        background-color: #fff; /* White background */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .card h2 {
+        font-size: 22px;
+        color: #1f272b; /* Dark text for card title */
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    /* Button Group Styling */
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .button-group form {
+        flex: 1 1 calc(33.333% - 10px);
+    }
+
+    button {
+        background-color: #6a11cb; /* Vibrant purple */
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #f5a425; /* Golden yellow on hover */
+        transform: translateY(-3px);
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #6a11cb; /* Vibrant purple */
+        color: white;
+    }
+
+    td {
+        background-color: #f9f9f9;
+    }
+
+    .table-actions button {
+        background-color: #28a745; /* Green for actions */
+        border: none;
+        padding: 8px 10px;
+        color: white;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .table-actions button:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         .content {
-            margin-left: 270px;
-            padding: 20px;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            background-color: #343a40;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            margin-left: 0;
+            padding: 10px;
         }
 
         .header h1 {
             font-size: 24px;
-            margin: 0;
         }
 
-        .card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .info-text {
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
+        .card h2 {
+            font-size: 20px;
         }
 
         .button-group form {
-            flex: 1 1 calc(33.333% - 10px);
+            flex: 1 1 100%;
         }
 
         button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
             width: 100%;
         }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        td {
-            background-color: #f9f9f9;
-        }
-
-        .table-actions button {
-            background-color: #28a745;
-            border: none;
-            padding: 8px 10px;
-            color: white;
-            border-radius: 5px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .table-actions button:hover {
-            background-color: #218838;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <a href="#" class="menu-item active">Dashboard</a>
-        <a href="#" class="menu-item">Profile</a>
-        <a href="#" class="menu-item">Activity List</a>
-        <a href="#" class="menu-item">Resource Allocation</a>
-        <a href="#" class="menu-item">Approve Version Upgrade</a>
-        <a href="#" class="menu-item">Program Reports</a>
-        <a href="#" class="menu-item">Feedback & Suggestions</a>
-    </div>
+
+    <!-- Include Navbar -->
+    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
+
 
     <div class="content">
         <div class="header">
@@ -207,5 +220,8 @@
             </div>
         </div>
     </div>
+    
+        <!-- Include Footer -->
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 </body>
 </html>
