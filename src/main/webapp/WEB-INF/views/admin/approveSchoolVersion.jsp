@@ -114,26 +114,9 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <a href="#" class="menu-item">Dashboard</a>
-        <a href="#" class="menu-item">Profile</a>
-        <a href="#" class="menu-item">Activity List</a>
-        <a href="#" class="menu-item">Progress Tracker</a>
-        <a href="#" class="menu-item">Resource Allocation</a>
-        <a href="#" class="menu-item active">Approve School Version Upgrade</a>
-        <a href="#" class="menu-item">Program Report</a>
-        <a href="#" class="menu-item">E-Certificate</a>
-        <a href="#" class="menu-item">Feedback & Suggestions</a>
-        <a href="#" class="menu-item">Send Email & Notifications</a>
-    </div>
     <div class="content">
         <div class="header">
             <h1>Approve School Version Upgrade</h1>
-            <div class="user-info">
-                <p>Welcome, Mr Ali</p>
-                <p>Admin</p>
-            </div>
         </div>
         <div class="table-container">
             <table>

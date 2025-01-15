@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Resources</title>
+    <title>List (Resources)</title>
     <style>
         body {
             font-family: Arial, sans-serif;

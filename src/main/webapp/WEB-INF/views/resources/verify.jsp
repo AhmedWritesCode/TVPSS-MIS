@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Verify School Information</title>
+    <title>Verify - School Information</title>
     <style>
         body {
             font-family: Arial, sans-serif;

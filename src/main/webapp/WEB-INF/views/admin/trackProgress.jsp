@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track School Progress</title>
+    <title>Track Progress for School</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -133,20 +133,6 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <a href="#" class="menu-item"><span>Dashboard</span></a>
-        <a href="#" class="menu-item"><span>Profile</span></a>
-        <a href="#" class="menu-item"><span>Activity List</span></a>
-        <a href="#" class="menu-item active"><span>Progress Tracker</span></a>
-        <a href="#" class="menu-item"><span>Resource Allocation</span></a>
-        <a href="#" class="menu-item"><span>Monitor Activity</span></a>
-        <a href="#" class="menu-item"><span>Approve School Version Upgrade</span></a>
-        <a href="#" class="menu-item"><span>Program Report</span></a>
-        <a href="#" class="menu-item"><span>E-Certificate</span></a>
-        <a href="#" class="menu-item"><span>Feedback & Suggestions</span></a>
-        <a href="#" class="menu-item"><span>Send Email & Notifications</span></a>
-    </div>
     
         
      <div class="content">

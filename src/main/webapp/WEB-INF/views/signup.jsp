@@ -4,91 +4,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Sign Up</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7fc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Changed from height to min-height */
+        margin: 0;
+        padding: 20px; /* Added padding to create some empty space */
+    }
 
-        .container {
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
+    .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        margin: 20px; /* Added margin for spacing */
+    }
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+    h1 {
+        text-align: center;
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        label {
-            font-size: 14px;
-            color: #555;
-            display: block;
-            margin-bottom: 5px;
-        }
+    label {
+        font-size: 14px;
+        color: #555;
+        display: block;
+        margin-bottom: 8px;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 14px;
-        }
+    input, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
 
-        input:focus, select:focus {
-            outline: none;
-            border-color: #5b9bd5;
-        }
+    input:focus, select:focus {
+        outline: none;
+        border-color: #6b5ae8; /* Purple border on focus */
+    }
 
-        .error-message {
-            color: red;
-            font-size: 12px;
-            margin-bottom: 15px;
-            text-align: center;
-        }
+    .error-message {
+        color: #d9534f; /* Red for error messages */
+        font-size: 14px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #5b9bd5;
-            border: none;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: #6b5ae8; /* Purple button background */
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 25px; /* Rounded corners */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        button:hover {
-            background-color: #4a8bb9;
-        }
+    button:hover {
+        background-color: #5943c0; /* Darker purple on hover */
+    }
 
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #555;
-            text-decoration: none;
-        }
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #6b5ae8; /* Purple link color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-        a:hover {
-            color: #5b9bd5;
-        }
-    </style>
+    a:hover {
+        color: #5943c0; /* Darker purple on hover */
+        text-decoration: underline;
+    }
+
+    /* School Name Field Styling */
+    #schoolNameField {
+        display: none; /* Hidden by default */
+    }
+
+    #schoolNameField label {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 8px;
+    }
+
+    #schoolNameField select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -100,9 +128,10 @@
         </c:if>
 
         <!-- Signup Form -->
-        
-        
+                        
         <form action="${pageContext.request.contextPath}/signup" method="POST">
+        
+        
                 
                 <div class="form-group">
                 <label for="firstName">First Name:</label>

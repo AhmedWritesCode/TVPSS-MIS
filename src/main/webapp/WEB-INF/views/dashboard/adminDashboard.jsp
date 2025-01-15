@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adminstrator Dashboard</title>
+    <title>Adminstrator Home</title>
 <style>
     /* General Reset */
     * {
@@ -173,7 +173,6 @@
     <div class="content">
         <div class="header">
             <h1>Welcome, Admin!</h1>
-            <span>Dashboard Overview</span>
         </div>
 
         <!-- Admin Action Buttons -->
@@ -187,7 +186,7 @@
                     <button type="submit">Approve Version Upgrade</button>
                 </form>
                 <form action="${pageContext.request.contextPath}/admin/monitor" method="get">
-                    <button type="submit">Monitor User Activity</button>
+                    <button type="submit">LIST OF USERS</button>
                 </form>
                 
                 <form action="${pageContext.request.contextPath}/resources" method="get">
@@ -209,7 +208,7 @@
             <h2 class="section-title">Reporting Actions</h2>
             <div class="button-group">
                 <form action="<%= request.getContextPath() %>/admin/generateCertifications" method="get">
-                    <button type="submit">Generate Certification</button>
+                    <button type="submit">List of TVPPS Participants</button>
                 </form>
                 <form action="<%= request.getContextPath() %>/admin/provideFeedback" method="get">
                     <button type="submit">Provide Feedback</button>

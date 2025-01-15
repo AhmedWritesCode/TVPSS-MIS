@@ -42,14 +42,14 @@
             padding: 10px 20px;
             font-size: 16px;
             color: #fff;
-            background-color: #28a745;
+            background-color: blue;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
         }
         .button:hover {
-            background-color: #218838;
+            background-color: gold;
         }
         .form-section {
             margin-bottom: 20px;
@@ -63,6 +63,9 @@
     </style>
 </head>
 <body>
+
+    <jsp:include page="/WEB-INF/views/admin/navbar.jsp" />
+
     <div class="container">
         <h1>Send Email Notification</h1>
         
@@ -97,6 +100,9 @@
             <button class="button" type="submit">Send Notification</button>
         </form>
     </div>
+    
+        <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+    
 </body>
 </html>
 

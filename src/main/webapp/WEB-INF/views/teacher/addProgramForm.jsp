@@ -1,222 +1,126 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!-- Add a new Program  -->
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>TBC TVPSS - Add Program</title>
+    <title>Add Program Form</title>
    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f5f5f5;
-        }
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
-        .sidebar {
-            width: 250px;
-            background-color: #101010;
-            height: 100vh;
-            position: fixed;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 10px;
-        }
+    /* Ensure navbar and footer span the full width */
+    .navbar, .footer {
+        width: 100%;
+        background-color: #ffffff; /* Adjust as needed */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    }
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .main-content {
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px auto; /* Center the main content */
+        flex: 1; /* Allow main content to grow and fill remaining space */
+    }
 
-        .menu-item {
-            padding: 10px;
-            margin: 5px 0;
-            color: #ccc;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
+    h1 {
+        font-size: 24px;
+        color: #1f272b;
+        margin-bottom: 20px;
+        text-align: center;
+    }
 
-        .menu-item:hover, .menu-item.active {
-            background-color: #1f1f1f;
-            color: white;
-        }
+    .program-form {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #ffffff;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ddd;
-        }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #333;
+    }
 
-        .content-wrapper {
-            display: flex;
-            align-items: flex-start;
-            gap: 20px;
-        }
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
 
-        .program-card {
-            background-color: #6b5ae8;
-            color: white;
-            border-radius: 10px;
-            padding: 20px; /* Adjust padding for more content spacing */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            min-width: 250px; /* Keeps the width fixed */
-            min-height: 300px; /* Adjust this value to increase the length */
-            height: auto; /* Optional: Allows it to grow dynamically */
-            margin: 20px;
-        }
+    .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
 
-        .program-form {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            flex-grow: 1;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+    button[type="submit"] {
+        background-color: #6b5ae8;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+        display: block;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+    button[type="submit"]:hover {
+        background-color: #5943c0;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+    .message {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+    }
 
-        .form-group input, .form-group select, .form-group button {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
 
-        .form-group button {
-            background-color: #6b5ae8;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .form-group button:hover {
-            background-color: #5943c0;
-        }
-
-        .form-group-dates {
-            display: flex;
-            gap: 40px; /* Adjust this value to increase the space between the date fields */
-        }
-
-        .form-group-dates .form-group {
-            flex: 1; /* Ensures both fields take up equal width */
-        }
-
-        .program-form {
-            margin-bottom: 20px; /* Adds space below the form */
-        }
-
-        .crew-list {
-            margin-top: 20px;
-            padding: 15px; /* Add padding inside the box */
-        }
-
-        .crew-list h4 {
-            margin-bottom: 15px; /* Space between the heading and the content */
-            font-size: 24px;
-            font-weight: bold;
-            text-align: left; /* Left align the heading */
-        }
-
-        .crew-box {
-            display: flex;
-            border: 2px solid black; /* Black border around the box */
-            border-radius: 10px; /* Rounded corners for the box */
-            background-color: #ffffff;
-            overflow: hidden; /* Prevents overflow of content */
-        }
-
-        .column {
-            flex: 1; /* Each column takes equal space */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Align items to the start */
-            padding: 10px;
-            gap: 10px; /* Space between elements */
-            border-right: 2px solid black; /* Black border separating columns */
-        }
-
-        .column:last-child {
-            border-right: none; /* Removes the right border from the last column */
-        }
-
-        .add-crew-btn {
-            background-color: #90ee90; /* Light purple background */
-            color: white; /* White text */
-            border: none; /* No border */
-            padding: 10px 20px; /* Padding inside the button */
-            border-radius: 25px; /* Rounded corners */
-            font-size: 16px; /* Font size */
-            cursor: pointer; /* Pointer cursor on hover */
-            display: block; /* Make the button a block-level element */
-            margin: 0 auto; /* Center the button horizontally */
-            text-align: center; /* Center the text inside the button */
-            width: auto; /* Adjust the width according to content */
-        }
-
-        .add-crew-btn:hover {
-            background-color: #9d88c7; /* Darker purple on hover */
-        }
-
-        .separator {
-            width: 100%;
-            border: 1px solid #000; /* Line between the headers and rows */
-            margin: 0px 0; /* Space between the text and the line */
-        }
-
-        button[type="submit"] {
-            background-color: #b6a0e4; /* Light purple background */
-            color: white; /* White text */
-            border: none; /* No border */
-            padding: 10px 20px; /* Padding inside the button */
-            border-radius: 25px; /* Rounded corners */
-            font-size: 16px; /* Font size */
-            cursor: pointer; /* Pointer cursor on hover */
-            display: block; /* Make the button a block-level element */
-            margin: 0 auto; /* Center the button horizontally */
-            text-align: center; /* Center the text inside the button */
-            width: auto; /* Adjust the width according to content */
-        }
-
-        button[type="submit"]:hover {
-            background-color: #9d88c7; /* Darker purple on hover */
-        }
-
-    </style>
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+</style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <a href="#" class="menu-item active">Dashboard</a>
-        <a href="#" class="menu-item">Main Dashboard</a>
-        <a href="#" class="menu-item">Add Program</a>
-        <a href="#" class="menu-item">Update Program</a>
-        <a href="#" class="menu-item">Crew List</a>
-        <a href="#" class="menu-item">Activity List</a>
-        <a href="#" class="menu-item">Application Review</a>
-        <a href="#" class="menu-item">Version Upgrade</a>
-        <a href="#" class="menu-item">Request Resource</a>
-    </div>
+
+    <jsp:include page="/WEB-INF/views/teacher/navbar.jsp" />
+
     
     <div class="main-content">
     <h1>Add a New Program</h1>
@@ -247,6 +151,8 @@
     </form>
 
 </div>
+
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 
 </body>
 </html>

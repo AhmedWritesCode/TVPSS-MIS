@@ -5,71 +5,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate Certifications</title>
+    <title>List of TVPSS Paticipants</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 70%;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            font-size: 26px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        td {
-            background-color: #f9f9f9;
-        }
-        .note {
-            font-size: 14px;
-            color: #777;
-            margin-top: 20px;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes up the full viewport height */
+    }
+
+    .navbar, .footer {
+        width: 100%;
+        background-color: #ffffff; /* Adjust as needed */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+    }
+
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        flex: 1; /* Allow the container to grow and fill the remaining space */
+    }
+
+    h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 12px 24px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #6b5ae8; /* Purple button background */
+        border: none;
+        border-radius: 25px; /* Rounded corners */
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #5943c0; /* Darker purple on hover */
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    th {
+        background-color: #6b5ae8; /* Purple header background */
+        color: white;
+        font-weight: bold;
+    }
+
+    td {
+        background-color: #f9f9f9;
+    }
+
+    tr:nth-child(even) td {
+        background-color: #f1f1f1; /* Alternate row color */
+    }
+
+    tr:hover td {
+        background-color: #e9e9e9; /* Hover effect for rows */
+    }
+
+    .note {
+        font-size: 14px;
+        color: #777;
+        margin-top: 20px;
+    }
+    
     </style>
-</head>
+        </head>
 <body>
+        <jsp:include page="/WEB-INF/views/admin/navbar.jsp" />
+
     <div class="container">
-        <h1>Generate Certifications</h1>
+        <h1>List of TVPSS Paticipants</h1>
         <!-- Displaying the users table -->
         <c:if test="${not empty users}">
-            <h2>Eligible Users</h2>
+            <h2>All Active Teachers & Students </h2>
             <table>
                 <thead>
                     <tr>
@@ -101,6 +144,9 @@
             <p class="note">No eligible users found. Please click "Generate Now" to generate certifications.</p>
         </c:if>
     </div>
+    
+        <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+    
 </body>
 </html>
 

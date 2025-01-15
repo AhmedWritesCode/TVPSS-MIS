@@ -6,230 +6,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback & Suggestions</title>
     <style>
-        /* General Body Styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000; /* Dark theme background */
-            margin: 0;
-            padding: 0;
-            color: #fff; /* Default text color */
-        }
+    /* General Body Styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #fff; /* White background */
+        margin: 0;
+        padding: 0;
+        color: #333; /* Dark text color */
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes up the full viewport height */
+    }
 
-        /* Sidebar Styling */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #1c1c1c;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            border-top-left-radius: 15px;  /* Round top-left corner */
-            border-bottom-left-radius: 15px;  /* Round bottom-left corner */
-        }
+    /* Header Styling */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px; /* Reduced padding */
+        background-color: #fff; /* White background */
+        color: #333; /* Dark text color */
+        width: 100%; /* Full width */
+        box-sizing: border-box; /* Prevent overflow */
+        position: fixed; /* Fixed position to stay at the top */
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Ensure header stays on top */
+        border-bottom: 1px solid #ddd; /* Add a subtle border */
+    }
 
-        .sidebar .logo {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fff;
-            text-align: center;
-            margin-bottom: 20px;
-            width: 100%;
-        }
+    .header .left {
+        font-size: 18px;
+        color: #333; /* Dark text color */
+    }
 
-        .sidebar a {
-            display: block;
-            padding: 15px 15px;
-            color: #ccc;
-            text-decoration: none;
-            font-size: 16px;
-            transition: background-color 0.3s, color 0.3s;
-            width: 88%;
-        }
+    .header .right {
+        font-size: 16px;
+    }
 
-        .sidebar a:hover, .sidebar a.active {
-            background-color: #f0c808; /* Highlight color */
-            color: #000;
-        }
+    .header .right a {
+        color: #333; /* Dark text color */
+        text-decoration: none;
+    }
 
-        /* Main Content Area */
-        .content {
-            margin-left: 270px; /* Sidebar width */
-            padding: 30px;
-        }
+    .header .right a:hover {
+        text-decoration: underline;
+    }
 
-        /* White box around the grey box */
-        .outer-container {
-            background-color: #fff; /* White background for the outer container */
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            max-width: 800px;
-            margin: auto;
-        }
+    /* Sidebar Styling */
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        background-color: #f8f9fa; /* Light gray background */
+        position: fixed;
+        top: 60px; /* Offset for the header */
+        left: 0;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border-right: 1px solid #ddd; /* Add a subtle border */
+    }
 
-        /* Grey box containing the form */
-        .container {
-            background-color: #f2f2f2; /* Light grey background for the form container */
-            border-radius: 10px;
-            padding: 30px;
-            color: #000;
-            box-shadow: none;
-        }
+    .sidebar .logo {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333; /* Dark text color */
+        text-align: center;
+        margin-bottom: 20px;
+        width: 100%;
+    }
 
-        /* Title (Feedback & Suggestions) */
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #000;
-            text-align: left; /* Align title to the left */
-        }
+    .sidebar a {
+        display: block;
+        padding: 10px 15px; /* Reduced padding */
+        color: #333; /* Dark text color */
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+        width: 88%;
+    }
 
-        label {
-            display: block;
-            font-size: 16px;
-            margin-bottom: 8px;
-            color: #000; /* Black text for labels */
-        }
+    .sidebar a:hover, .sidebar a.active {
+        background-color: #007bff; /* Blue background on hover/active */
+        color: #fff; /* White text on hover/active */
+    }
 
-        input, textarea, select, .button {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff; /* White background for input fields */
-            color: #000; /* Black text inside input fields */
-            font-size: 16px;
-        }
+    /* Main Content Area */
+    .content {
+        margin-left: 250px; /* Sidebar width */
+        padding: 20px; /* Reduced padding */
+        margin-top: 60px; /* Offset for the header */
+        flex: 1; /* Allow the content to grow and fill the remaining space */
+    }
 
-        textarea {
-            height: 120px;
-            resize: none;
-        }
+    /* White box around the grey box */
+    .outer-container {
+        background-color: #fff; /* White background */
+        border-radius: 8px; /* Slightly rounded corners */
+        padding: 20px; /* Reduced padding */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        max-width: 800px;
+        margin: 0 auto; /* Center the container */
+    }
 
-        input:focus, textarea:focus, select:focus {
-            border-color: #f0c808;
-            outline: none;
-        }
+    /* Grey box containing the form */
+    .container {
+        background-color: #f8f9fa; /* Light gray background */
+        border-radius: 8px; /* Slightly rounded corners */
+        padding: 20px; /* Reduced padding */
+        color: #333; /* Dark text color */
+    }
 
-        .button {
-            background-color: #f0c808;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-            transition: background-color 0.3s;
-        }
+    /* Title (Feedback & Suggestions) */
+    h1 {
+        font-size: 24px; /* Slightly smaller font size */
+        margin-bottom: 15px; /* Reduced margin */
+        color: #333; /* Dark text color */
+        text-align: left; /* Align title to the left */
+    }
 
-        .button:hover {
-            background-color: #e0b607;
-        }
+    label {
+        display: block;
+        font-size: 14px; /* Slightly smaller font size */
+        margin-bottom: 5px; /* Reduced margin */
+        color: #333; /* Dark text color */
+    }
 
-        /* Header styling for top-left and top-right */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            background-color: #000;
-            color: #fff;
-            width: calc(100% - 250px); /* Adjust for sidebar width */
-            position: absolute; /* Ensure header stays on top */
-            left: 250px; /* Position the header next to the sidebar */
-            box-sizing: border-box; /* Prevent overflow */
-        }
+    input, textarea, select, .button {
+        width: 100%;
+        padding: 10px; /* Reduced padding */
+        margin-bottom: 15px; /* Reduced margin */
+        border: 1px solid #ddd; /* Light border */
+        border-radius: 5px; /* Slightly rounded corners */
+        background-color: #fff; /* White background for input fields */
+        color: #333; /* Dark text inside input fields */
+        font-size: 14px; /* Slightly smaller font size */
+    }
 
-        /* Adjust margin to ensure the content isn't too far right */
-        .header .left {
-            font-size: 18px;
-            color: #fff; /* Ensure "Welcome Admin" text is white */
-            margin-left: 20px; /* Space it from the left edge */
-        }
+    textarea {
+        height: 100px; /* Reduced height */
+        resize: none;
+    }
 
-        .header .right {
-            font-size: 16px;
-        }
+    input:focus, textarea:focus, select:focus {
+        border-color: #007bff; /* Blue border on focus */
+        outline: none;
+    }
 
-        .header .right a {
-            color: #fff;
-            text-decoration: none;
-        }
+    .button {
+        background-color: #007bff; /* Blue button background */
+        color: #fff; /* White text */
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        text-align: center;
+        transition: background-color 0.3s;
+    }
 
-        .header .right a:hover {
-            text-decoration: underline;
-        }
+    .button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
 
-        /* Confirmation Modal */
-        #confirmationModal {
-            display: none; /* Initially hidden */
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
+    /* Confirmation Modal */
+    #confirmationModal {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff; /* White background */
+        color: #333; /* Dark text color */
+        padding: 20px;
+        border-radius: 8px; /* Slightly rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        z-index: 1000;
+    }
 
-        #confirmationModal .btn-group {
-            display: flex;
-            justify-content: space-around;
-        }
+    #confirmationModal .btn-group {
+        display: flex;
+        justify-content: space-around;
+    }
 
-        .btn-group button {
-            background-color: #f0c808;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .btn-group button {
+        background-color: #007bff; /* Blue button background */
+        color: #fff; /* White text */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px; /* Slightly rounded corners */
+        cursor: pointer;
+    }
 
-        .btn-group button:hover {
-            background-color: #e0b607;
-        }
+    .btn-group button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
 
-        /* Success Message */
-        #successMessage {
-            display: none;
-            color: green;
-            font-size: 18px;
-            margin-top: 20px;
+    /* Success Message */
+    #successMessage {
+        display: none;
+        color: #28a745; /* Green text for success */
+        font-size: 16px; /* Slightly smaller font size */
+        margin-top: 15px; /* Reduced margin */
         }
-    </style>
+        </style>
 </head>
 <body>
     <!-- Header -->
-    <div class="header">
-        <div class="left">Welcome, Admin</div>
-        <div class="right">
-            <a href="/home">Home</a> / Feedback & Suggestions
-        </div>
-    </div>
+    <jsp:include page="/WEB-INF/views/admin/navbar.jsp" />
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">Dashboard</div>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/profile">Profile</a>
-        <a href="/activityList">Activity List</a>
-        <a href="/progressTracker">Progress Tracker</a>
-        <a href="/resourceAllocation">Resource Allocation</a>
-        <a href="/monitorActivity">Monitor Activity</a>
-        <a href="/approveUpgrades">Approve School Version Upgrade</a>
-        <a href="/programReport">Program Report</a>
-        <a href="/eCertificate">E-Certificate</a>
-        <a class="active" href="/feedbackSuggestions">Feedback & Suggestions</a>
-        <a href="/sendEmail">Send Email & Notifications</a>
-    </div>
 
   <!-- Main Content -->
 <div class="content">
@@ -290,5 +274,8 @@
         }, 1000);
     }
 </script>
+
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+
 </body>
 </html>

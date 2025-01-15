@@ -52,7 +52,6 @@
 
         /* Main content */
         .main-content {
-            margin-left: 240px;
             padding: 20px;
             background-color: #fff;
         }
@@ -139,22 +138,6 @@
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>TBC TVPSS</h2>
-        <ul>
-            <li class="active"><a href="#">Dashboard</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Activity List</a></li>
-            <li><a href="#">Progress Tracker</a></li>
-            <li><a href="#">Resource Allocation</a></li>
-            <li><a href="#">Monitor Activity</a></li>
-            <li><a href="#">Approve Version Upgrade</a></li>
-            <li><a href="#">Program Report</a></li>
-            <li><a href="#">E-Certificate</a></li>
-            <li><a href="#">Feedback Suggestions</a></li>
-            <li><a href="#">Send Notifications</a></li>
-        </ul>
-    </div>
 
     <!-- Main Content -->
     <div class="main-content">

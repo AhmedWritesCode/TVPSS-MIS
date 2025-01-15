@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Studio</title>
+    <title>Upload Linkedin or Video Link</title>
     
     <style>
         /* General Reset */

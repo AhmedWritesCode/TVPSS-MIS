@@ -4,86 +4,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Details</title>
+    <title>View Report Details</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            font-size: 28px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        h2 {
-            font-size: 24px;
-            margin-top: 40px;
-            text-align: center;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        li strong {
-            color: #007bff;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
-        }
-        td {
-            background-color: #f9f9f9;
-        }
-        tr:hover td {
-            background-color: #f1f1f1;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: block;
-            width: 200px;
-            margin: 20px auto;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    /* General Body Styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #fff; /* White background */
+        margin: 0;
+        padding: 0;
+        color: #333; /* Dark text color */
+    }
+
+    /* Container Styling (scoped to this page only) */
+    .container {
+        width: 90%; /* Slightly wider for better use of space */
+        max-width: 1200px; /* Limit maximum width */
+        margin: 20px auto; /* Reduced top margin */
+        padding: 20px; /* Reduced padding */
+        background-color: #fff; /* White background */
+        border-radius: 8px; /* Slightly rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    /* Headings (scoped to this page only) */
+    .container h1, .container h2 {
+        font-size: 24px; /* Slightly smaller font size */
+        color: #333; /* Dark text color */
+        margin-bottom: 15px; /* Reduced margin */
+    }
+
+    .container h2 {
+        font-size: 22px; /* Slightly smaller font size */
+        margin-top: 30px; /* Reduced margin */
+        text-align: center;
+    }
+
+    /* List Styling (scoped to this page only) */
+    .container ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .container li {
+        background-color: #f8f9fa; /* Light gray background */
+        padding: 12px; /* Reduced padding */
+        margin-bottom: 10px;
+        border-radius: 5px; /* Slightly rounded corners */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    }
+
+    .container li strong {
+        color: #007bff; /* Blue text for strong elements */
+    }
+
+    /* Table Styling (scoped to this page only) */
+    .container table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .container th, .container td {
+        padding: 12px; /* Reduced padding */
+        border: 1px solid #ddd; /* Light border */
+        text-align: left;
+    }
+
+    .container th {
+        background-color: #007bff; /* Blue header background */
+        color: white; /* White text */
+        font-size: 14px; /* Slightly smaller font size */
+    }
+
+    .container td {
+        background-color: #fff; /* White background for table cells */
+    }
+
+    .container tr:hover td {
+        background-color: #f1f1f1; /* Light gray hover effect */
+    }
+
+    /* Button Styling (scoped to this page only) */
+    .container button {
+        background-color: #007bff; /* Blue button background */
+        color: white; /* White text */
+        padding: 10px 20px; /* Reduced padding */
+        border: none;
+        border-radius: 5px; /* Slightly rounded corners */
+        cursor: pointer;
+        font-size: 14px; /* Slightly smaller font size */
+        display: block;
+        width: 150px; /* Reduced width */
+        margin: 20px auto; /* Centered with reduced margin */
+        transition: background-color 0.3s ease;
+    }
+
+    .container button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+            </style>
 </head>
 <body>
+    <jsp:include page="/WEB-INF/views/admin/navbar.jsp" />
 
     <div class="container">
         <h1>Programs List</h1>
@@ -125,6 +147,7 @@
     <div class="container">
         <button onclick="window.history.back()">Go Back</button>
     </div>
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 
 </body>
 </html>
