@@ -60,11 +60,18 @@ public class studentController {
         // Handle form submission logic
         boolean isSubmitted = crewService.submitApplication(crewApplication);
         if (isSubmitted) {
-            model.addAttribute("message", "Crew application submitted successfully.");
+            // Redirect to a success page to prevent form resubmission
+            return "redirect:/student/applicationSuccess";
         } else {
             model.addAttribute("message", "Failed to submit crew application.");
+            return "student/applicationStatus"; // Stay on the form page if submission fails
         }
-        return "student/applicationStatus";
     }
 
+    // Add a new method to handle the success page
+    @GetMapping("/applicationSuccess")
+    public String showApplicationSuccessPage(Model model) {
+        model.addAttribute("message", "Crew application submitted successfully.");
+        return "student/success"; // JSP for success message
+    }
 }

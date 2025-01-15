@@ -5,9 +5,6 @@
     <div class="footer-container">
         <p>&copy; 2025 Code & Coffee. All rights reserved.</p>
         <ul class="footer-links">
-            <li><a href="/privacy.jsp">Privacy Policy</a></li>
-            <li><a href="/terms.jsp">Terms of Service</a></li>
-            <li><a href="/contact.jsp">Contact Us</a></li>
         </ul>
     </div>
 </footer>

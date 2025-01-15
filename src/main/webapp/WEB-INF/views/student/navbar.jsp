@@ -9,8 +9,8 @@
         <nav>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/dashboard/studentDashboard">Home</a></li>
-                <li><a href="/about.jsp">About</a></li>
-                <li><a href="/contact.jsp">Contact</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="${pageContext.request.contextPath}/">Logout</a></li>
             </ul>
         </nav>
     </div>

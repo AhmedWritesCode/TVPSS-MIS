@@ -27,24 +27,6 @@
         padding: 0;
     }
 
-    /* Sidebar Styling */
-    .sidebar {
-        background-color: #1f272b; /* Dark background */
-        color: white;
-        width: 250px;
-        height: 100vh;
-        position: fixed;
-        padding: 20px 10px;
-    }
-
-    .sidebar h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 22px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #f5a425; /* Accent color for sidebar title */
-    }
 
     .menu-item {
         margin: 10px 0;
@@ -205,7 +187,7 @@
 <body>
 
     <!-- Include Navbar -->
-    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
+    <jsp:include page="/WEB-INF/views/student/navbar.jsp" />
     
     <div class="main-content">
         <div class="header">

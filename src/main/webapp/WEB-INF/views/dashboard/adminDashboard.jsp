@@ -167,7 +167,7 @@
 <body>
 
     <!-- Include Navbar -->
-    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
+    <jsp:include page="/WEB-INF/views/admin/navbar.jsp" />
 
 
     <div class="content">

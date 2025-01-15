@@ -144,7 +144,7 @@
 <body>
 
     <!-- Include Navbar -->
-    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
+    <jsp:include page="/WEB-INF/views/teacher/navbar.jsp" />
 
     <div class="main-content">
         <div class="header">

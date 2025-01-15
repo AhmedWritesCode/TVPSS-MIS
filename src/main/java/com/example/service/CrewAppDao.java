@@ -26,7 +26,7 @@ public class CrewAppDao {
             if (transaction != null) {
                 transaction.rollback();  // Rollback if there is an error
             }
-            throw new RuntimeException("Failed to save the crew application.", e);
+            throw new RuntimeException("Please Submit your Talent Application.", e);
         } finally {
             session.close();  // Always close the session
         }
