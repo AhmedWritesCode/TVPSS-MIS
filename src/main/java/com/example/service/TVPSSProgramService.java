@@ -32,4 +32,8 @@ public class TVPSSProgramService {
     public TVPSSProgram getProgramById(Long id) {
         return tvpssProgramDao.getProgramById(id);
     }
+    
+    public boolean deleteProgram(Long id) {
+        return tvpssProgramDao.deleteProgram(id);
+    }
 }

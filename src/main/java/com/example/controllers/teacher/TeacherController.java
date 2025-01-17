@@ -121,4 +121,21 @@ public class TeacherController {
         model.addAttribute("programs", programs);
         return "teacher/viewProgram"; // The JSP page for viewing the list of programs
     }
+    
+    @GetMapping("/deleteProgram")
+    public String deleteProgram(@RequestParam Long id, Model model) {
+        boolean isDeleted = programService.deleteProgram(id);
+
+        if (isDeleted) {
+            model.addAttribute("message", "Program deleted successfully.");
+            model.addAttribute("statusClass", "success");
+            model.addAttribute("statusMessage", "The program has been deleted successfully.");
+        } else {
+            model.addAttribute("message", "Failed to delete program.");
+            model.addAttribute("statusClass", "failure");
+            model.addAttribute("statusMessage", "An error occurred while deleting the program. Please try again.");
+        }
+
+        return "teacher/programStatus"; // Show status after deleting
+    }
 }

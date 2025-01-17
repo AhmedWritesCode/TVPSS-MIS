@@ -130,7 +130,7 @@
 </head>
 <body>
 
-<jsp:include page = "navbar.jsp" />
+    <jsp:include page="/WEB-INF/views/includes/navbar.jsp" />
 
   <div class="error-container">
     <div class="error-title">404</div>
@@ -149,7 +149,7 @@
     <a href="/" class="error-button">Go Back Home</a>
   </div>
   
-  <jsp:include page = "footer.jsp" />
+    <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
   
 </body>
 </html>

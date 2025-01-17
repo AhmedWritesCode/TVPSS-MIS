@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!-- view programs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Program</title>
-<style>
+    <style>
     body {
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
@@ -94,17 +93,31 @@
     }
 
     td a {
-        background-color: #007bff;
         color: white;
         padding: 8px 16px;
         text-decoration: none;
         border-radius: 5px;
         font-weight: bold;
         transition: background-color 0.3s ease;
+        display: inline-block; /* Ensure buttons stay on the same line */
     }
 
-    td a:hover {
+    td a.edit-button {
+        background-color: #007bff;
+        margin-right: 10px; /* Add space between Edit and Delete buttons */
+        margin: 5px;
+    }
+
+    td a.edit-button:hover {
         background-color: #0056b3;
+    }
+
+    td a.delete-button {
+        background-color: #dc3545; /* Red color for delete button */
+    }
+
+    td a.delete-button:hover {
+        background-color: #c82333; /* Darker red on hover */
     }
 
     .button-container {
@@ -145,30 +158,50 @@
     .add-program-button:hover {
         background-color: #5943c0;
     }
-    </style>
+            .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
+        #searchInput {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover {
+            background-color: #5943c0;
+        }
+    </style>
 </head>
 <body>
-
     <jsp:include page="/WEB-INF/views/teacher/navbar.jsp" />
 
     <div class="main-content">
         <div class="container">
             <h2>Program Details</h2>
 
-            <!-- Program Details (if individual program view) -->
-            <c:if test="${not empty program}">
-                <h3>${program.name}</h3>
-                <p>${program.description}</p>
-            </c:if>
+            <!-- Search Input -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search by name or description..." onkeyup="searchTable()">
+            </div>
 
             <!-- Program List -->
-            <table>
+            <table id="programTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
+                        <th onclick="sortTable(0)">ID</th>
+                        <th onclick="sortTable(1)">Name</th>
+                        <th onclick="sortTable(2)">Description</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -179,8 +212,9 @@
                             <td>${program.name}</td>
                             <td>${program.description}</td>
                             <td>
-                                <!-- Update Program Button -->
-                                <a href="${pageContext.request.contextPath}/teacher/updateProgram?id=${program.id}">Edit</a>
+                                <a href="${pageContext.request.contextPath}/teacher/updateProgram?id=${program.id}" class="edit-button">Edit</a>
+                                <a href="${pageContext.request.contextPath}/teacher/deleteProgram?id=${program.id}" 
+                                   onclick="return confirm('Are you sure you want to delete this program?');" class="delete-button">Delete</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -191,11 +225,49 @@
             <a href="${pageContext.request.contextPath}/teacher/addProgram" class="button-container">Add New Program</a>
         </div>
     </div>
+
     <jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 
+    <script>
+        function searchTable() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const table = document.getElementById("programTable");
+            const rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                const name = rows[i].getElementsByTagName("td")[1].textContent.toLowerCase();
+                const description = rows[i].getElementsByTagName("td")[2].textContent.toLowerCase();
+
+                if (name.includes(input) || description.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+
+        function sortTable(columnIndex) {
+            const table = document.getElementById("programTable");
+            const rows = Array.from(table.getElementsByTagName("tr")).slice(1);
+            const isAscending = table.getAttribute("data-sort-order") === "asc";
+
+            rows.sort((a, b) => {
+                const aValue = a.getElementsByTagName("td")[columnIndex].textContent;
+                const bValue = b.getElementsByTagName("td")[columnIndex].textContent;
+
+                if (columnIndex === 0) {
+                    return isAscending ? aValue - bValue : bValue - aValue;
+                } else {
+                    return isAscending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+                }
+            });
+
+            table.setAttribute("data-sort-order", isAscending ? "desc" : "asc");
+
+            const tbody = table.getElementsByTagName("tbody")[0];
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+        }
+    </script>
 </body>
 </html>
-
-
-
-

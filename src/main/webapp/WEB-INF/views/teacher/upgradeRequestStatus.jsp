@@ -51,7 +51,7 @@
     <div class="container">
         <div class="message">Upgrade Request Submitted</div>
         <p>${message}</p>
-        <a href="${pageContext.request.contextPath}/teacher/manageDashboard" class="btn-back">Back to Dashboard</a>
+        <a href="${pageContext.request.contextPath}/dashboard/teacherDashboard" class="btn-back">Back to Dashboard</a>
     </div>
 </body>
 </html>

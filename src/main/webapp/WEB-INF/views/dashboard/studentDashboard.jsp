@@ -11,176 +11,151 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 <style>
-    /* General Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-    /* Body Styling */
-    body {
-        background-color: #f7f7f7; /* Light gray background */
-        color: #333; /* Default text color */
-        margin: 0;
-        padding: 0;
-    }
+/* Ensure html and body take full height */
+html, body {
+    height: 100%;
+}
+
+/* Body Styling */
+body {
+    background-color: #f7f7f7; /* Light gray background */
+    color: #333; /* Default text color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main Content Styling */
+
+/* Footer Styling */
+footer {
+    width: 100%;
+    color: white;
+    margin-top: auto; /* Pushes the footer to the bottom */
+}
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #1f272b; /* Dark text for header */
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.header .user-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #333; /* Dark text for user info */
+}
+
+/* Info Card Styling */
+.info-card {
+    background-color: #fff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.info-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    color: #1f272b; /* Dark text for card title */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-card p {
+    font-size: 16px;
+    color: #333; /* Dark text for card content */
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Button Group Styling */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #6a11cb; /* Purple button background */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #f5a425; /* Accent color on hover */
+}
 
 
-    .menu-item {
-        margin: 10px 0;
-        padding: 10px 15px;
-        color: white;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
+/* Mobile Responsiveness */
 
-    .menu-item:hover,
-    .menu-item.active {
-        background-color: #f5a425; /* Accent color on hover/active */
-        color: black;
-    }
-
-    /* Main Content Styling */
     .main-content {
-        padding: 20px;
+        margin-left: 0;
+        padding: 10px;
     }
 
-    /* Header Styling */
     .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header h1 {
-        font-size: 24px;
-        margin: 0;
-        color: #1f272b; /* Dark text for header */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .header .user-info {
-        display: flex;
-        align-items: center;
+        margin-top: 10px;
     }
 
-    .header .user-info img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-
-    .header .user-info p {
-        margin: 0;
-        font-size: 14px;
-        color: #333; /* Dark text for user info */
-    }
-
-    /* Info Card Styling */
     .info-card {
-        background-color: #fff; /* White background */
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
+        padding: 15px;
     }
 
     .info-card h3 {
-        margin: 0 0 10px 0;
-        font-size: 20px;
-        color: #1f272b; /* Dark text for card title */
-        text-transform: uppercase;
-        letter-spacing: 1px;
+        font-size: 18px;
     }
 
     .info-card p {
-        font-size: 16px;
-        color: #333; /* Dark text for card content */
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-
-    /* Button Group Styling */
-    .button-group {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin-bottom: 20px;
+        font-size: 14px;
     }
 
     button {
-        background-color: #6a11cb; /* Purple button background */
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: #f5a425; /* Accent color on hover */
-    }
-
-    /* Calendar Styling */
-    #calendar {
-        max-width: 100%;
-        margin: 0 auto;
-        background-color: #fff; /* White background for calendar */
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-        .sidebar {
-            width: 100%;
-            height: auto;
-            position: relative;
-            padding: 10px;
-        }
-
-        .main-content {
-            margin-left: 0;
-            padding: 10px;
-        }
-
-        .header {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .header .user-info {
-            margin-top: 10px;
-        }
-
-        .info-card {
-            padding: 15px;
-        }
-
-        .info-card h3 {
-            font-size: 18px;
-        }
-
-        .info-card p {
-            font-size: 14px;
-        }
-
-        button {
-            padding: 10px 15px;
-            font-size: 14px;
-        }
+        padding: 10px 15px;
+        font-size: 14px;
     }
 </style>
 </head>
@@ -194,14 +169,6 @@
             <h1>Welcome, Ahmed!</h1>
         </div>
 
-        <div class="info-card">
-            <h3>Information</h3>
-            <p>SMK TAMAN UNIVERSITI</p>
-            <p>Campus Residence, UTM, Johor Bahru, Johor</p>
-            <p>Email: wtvr@gmail.com</p>
-            <p>Contact: 012-******</p>
-        </div>
-
         <div class="info-card button-group">
             <h3>OPTIONS</h3>
             
@@ -210,7 +177,7 @@
             </form>
                         
             <form action="<%= request.getContextPath() %>/student/uploadVideoLinksForm" method="get">
-                <button type="submit">Share your Linkedin</button>
+                <button type="submit">Share Video or Account</button>
             </form>
         </div>
             

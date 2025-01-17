@@ -66,5 +66,24 @@ public class TVPSSProgramDao {
             session.close();
         }
     }
+    
+    public boolean deleteProgram(Long id) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        try {
+            TVPSSProgram program = session.get(TVPSSProgram.class, id);
+            if (program != null) {
+                session.delete(program);
+                transaction.commit();
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            transaction.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 }
 

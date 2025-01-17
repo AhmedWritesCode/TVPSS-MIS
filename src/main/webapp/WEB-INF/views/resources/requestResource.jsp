@@ -64,6 +64,8 @@
             font-weight: bold;
             color: red;
         }
+        
+        
     </style>
 </head>
 <body>
@@ -114,6 +116,8 @@
 
             <button type="submit">Submit Request</button>
         </form>
+                <a href="${pageContext.request.contextPath}/dashboard/teacherDashboard" class="btn-back">Back to Dashboard</a>
+        
     </div>
 </body>
 </html>
