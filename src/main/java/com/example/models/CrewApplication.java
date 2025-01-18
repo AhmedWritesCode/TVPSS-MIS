@@ -1,7 +1,7 @@
 package com.example.models;
 
 import javax.persistence.*;
-
+import java.time.LocalDateTime;
 @Entity
 @Table(name = "crew_applications")
 public class CrewApplication {
@@ -15,7 +15,8 @@ public class CrewApplication {
     private String comment;
     @Column(name = "status")
     private String status;
-
+    @Column(name = "interview_date_time")
+    private String interviewDateTime;
     // Getters and Setters
     public Long getId() {
         return id;
@@ -54,6 +55,13 @@ public class CrewApplication {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+        public String getInterviewDateTime() {
+        return interviewDateTime;
+    }
+
+    public void setInterviewDateTime(String interviewDateTime) {
+        this.interviewDateTime = interviewDateTime;
     }
 }
 
