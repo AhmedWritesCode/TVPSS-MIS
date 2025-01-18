@@ -6,15 +6,18 @@ import com.example.models.User;
 import com.example.service.SchoolService;
 import com.example.service.TVPSSProgramService;
 import com.example.service.UserService;
-
+import com.example.models.CrewApplication;
+import com.example.service.CrewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 @Controller
 @RequestMapping("/teacher")
 public class TeacherController {
@@ -25,8 +28,43 @@ public class TeacherController {
     private SchoolService schoolService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CrewService crewService;
 
+ @GetMapping("/studentApplications")
+    public String listStudentApplications(Model model) {
+        List<CrewApplication> applications = crewService.getAllApplications();
+        System.out.println("Applications List Size: " + applications.size()); // 打印列表大小
+        for (CrewApplication application : applications) {
+            System.out.println("Application ID: " + application.getId() + ", Name: " + application.getName() + ", Interview Date Time: " + application.getInterviewDateTime());
+        }
+        model.addAttribute("applications", applications);
+        return "teacher/studentApplicationList";
+    }
+    @PostMapping("/approveApplication")
+    public String approveApplication(@RequestParam("applicationId") Long applicationId) {
+        crewService.updateApplicationStatus(applicationId, "Approved");
+        return "redirect:/teacher/studentApplications";
+    }
 
+    @PostMapping("/rejectApplication")
+    public String rejectApplication(@RequestParam("applicationId") Long applicationId) {
+        crewService.updateApplicationStatus(applicationId, "Rejected");
+        return "redirect:/teacher/studentApplications";
+    }
+
+    @PostMapping("/pendingApplication")
+    public String pendingApplication(@RequestParam("applicationId") Long applicationId) {
+        crewService.updateApplicationStatus(applicationId, "Pending");
+        return "redirect:/teacher/studentApplications";
+    }
+    
+    @PostMapping("/saveInterviewSchedule")
+    public String saveInterviewSchedule(@RequestParam("applicationId") Long applicationId,
+                                        @RequestParam("interviewDateTime") String interviewDateTimeString) {
+        crewService.saveInterviewSchedule(applicationId, interviewDateTimeString);
+        return "redirect:/teacher/studentApplications";
+    }
 
     @GetMapping("/manageDashboard")
     public String manageDashboard(Model model) {
