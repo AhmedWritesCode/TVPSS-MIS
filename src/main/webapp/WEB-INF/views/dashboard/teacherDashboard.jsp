@@ -151,10 +151,13 @@
             <h1>Welcome, Ahmed!</h1>
         </div>
 
-        <!-- Teacher Actions -->
+         <!-- Teacher Actions -->
         <div class="info-card">
             <h3>Teacher Actions</h3>
             <div class="button-group">
+                        <form action="${pageContext.request.contextPath}/teacher/studentApplications" method="get">
+                    <button type="submit">View Student Applications</button>
+                </form>
                 <form action="${pageContext.request.contextPath}/teacher/manageDashboard" method="get">
                     <button type="submit">Manage School Dashboard</button>
                 </form>
